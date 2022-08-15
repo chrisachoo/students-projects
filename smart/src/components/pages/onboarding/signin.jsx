@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSignin } from '../../hooks/useSignin'
-import { InputForm, SecondaryButton, RemeberMe, SubText } from '../../index'
+import { Input, SecondaryButton, RemeberMe, SubText } from '../../index'
 import shopping from '../../../images/shopping.jpg'
 import './onboarding.css'
 
@@ -25,8 +25,8 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let { email, password } = form
-    await signin(email, password)
+    let { email: username, password } = form
+    await signin(username, password).catch(err => { console.log("Error", err) })
   }
 
   return (
@@ -41,7 +41,7 @@ const SignIn = () => {
           {error && <div className='error'>{error}</div>}
 
           <form onSubmit={handleSubmit}>
-            <InputForm
+            <Input
               label={`Email`}
               type={`email`}
               name={`email`}
@@ -50,7 +50,7 @@ const SignIn = () => {
               placeholder={`Enter your email`}
             />
 
-            <InputForm
+            <Input
               label={`Password`}
               type={`password`}
               name={`password`}

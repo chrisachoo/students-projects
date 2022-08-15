@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { InputForm, SecondaryButton } from '../../index'
+import { Input, SecondaryButton } from '../../index'
 import shopping from '../../../images/shopping.jpg'
 import './onboarding.css'
 
@@ -29,7 +29,7 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    let { first_name, last_name, cellno, email, password } = form
+    let { first_name, last_name, cellno, email, usertype, password } = form
 
     console.log(`firstName: ${first_name}, lastName: ${last_name}, cellno: ${cellno}, email: ${email}, usertype: ${usertype}, password: ${password}`)
     await signup(first_name, last_name, email, cellno, usertype, password)
@@ -49,26 +49,26 @@ const SignUp = () => {
 
           <form onSubmit={handleSubmit}>
             <div className='inline__input'>
-              <InputForm
+              <Input
                 label={`First Name`}
                 type={`text`}
-                name={`firstName`}
+                name={`first_name`}
                 value={form.first_name}
                 onChange={handleFormChange}
                 placeholder={`First Name`}
               />
 
-              <InputForm
+              <Input
                 label={`Last Name`}
                 type={`text`}
-                name={`lastName`}
+                name={`last_name`}
                 value={form.last_name}
                 onChange={handleFormChange}
                 placeholder={`Last Name`}
               />
             </div>
 
-            <InputForm
+            <Input
               label={`Email`}
               type={`email`}
               name={`email`}
@@ -77,17 +77,17 @@ const SignUp = () => {
               placeholder={`Enter your email`}
             />
 
-            <InputForm
+            <Input
             label={`Cell Number`}
             type={`text`}
-            name={`Cell Number`}
+            name={`cellno`}
             value={form.cellno}
             onChange={handleFormChange}
             placeholder={`Cell Number`}
           />
 
 
-            <InputForm
+            <Input
               label={`Password`}
               type={`password`}
               name={`password`}

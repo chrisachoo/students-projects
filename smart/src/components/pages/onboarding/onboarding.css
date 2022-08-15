@@ -29,6 +29,13 @@
     cursor: pointer;
 }
 
+.group__content {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    float: right;
+}
+
 div.error {
     padding: 10px;
     background: #ffefef;

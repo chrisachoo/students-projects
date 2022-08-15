@@ -10,14 +10,14 @@ export const useSignin = () => {
   const { dispatch } = useAuthContext()
   const _url = 'https://e-mall-backend.herokuapp.com'
 
-  const signin = async (email, password) => {
+  const signin = async (username, password) => {
     setIsLoading(true)
     setError(null)
 
     const response = await fetch(`${_url}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     }).catch((err)=> {
       console.log(err)
     })
@@ -32,7 +32,7 @@ export const useSignin = () => {
       localStorage.setItem('user', JSON.stringify(json))
       dispatch({type: 'SIGNIN', payload: json})
       setIsLoading(false)
-      navigate('/')
+      navigate('/profile')
     }
   }
 

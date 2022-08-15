@@ -9,6 +9,39 @@ a {
   color: unset;
 }
 
+/* BUTTONS */
+.btn {
+  padding: .5em 2em;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 500;
+  border-radius: 2px;
+  transition: all .5s ease;
+  outline: none;
+  border: none;
+}
+
+.btn-secondary {
+  background: #129bf1;
+  color: #fefefe;
+}
+
+.btn-secondary:hover {
+  background: #0b79bf;
+}
+
+.btn-primary {
+  background: #CAD4D8;
+}
+
+.btn-primary:hover {
+  background: #306060;
+  color: #FFFFFF;
+}
+
+/* GLOBAL PADDING */
 .section__padding {
   padding: 1em;
 }
