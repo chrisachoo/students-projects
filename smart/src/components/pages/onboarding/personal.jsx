@@ -15,7 +15,7 @@ const Personal = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await JSON.parse(localStorage.getItem('user'))
+      const user = await JSON.parse(sessionStorage.getItem('user'))
       if (user) {
         setForm({
           first_name: user.first_name,
@@ -39,10 +39,8 @@ const Personal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
+    
     let { first_name, last_name, email, cellno, token } = form
-
-    console.log(`firstName: ${first_name}, lastName: ${last_name}, email: ${email}, cellno: ${cellno}, token: ${token}`)
     await updateUser(first_name, last_name, email, cellno, token)
   }
 
@@ -89,6 +87,7 @@ const Personal = () => {
           onChange={handleFormChange}
           defaultValue={form.email}
           placeholder={`First Name`}
+          disabled={true}
         />
         <div className='group__content'>
           <button className='btn btn-primary'>Cancel</button>

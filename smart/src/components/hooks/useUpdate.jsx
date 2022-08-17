@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
 
 export const useUpdate = () => {
@@ -10,11 +11,13 @@ export const useUpdate = () => {
     setIsLoading(true)
     setError(null)
 
+    console.log(`firstName: ${first_name}, lastName: ${last_name}, email: ${email}, cellno: ${cellno}, token: ${token}`)
+
     const response = await fetch(`${_url}/user/update-profile`, {
-      method: 'PUT',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ first_name, last_name, email, cellno, token })
-    }).catch((err)=> {
+    }).catch((err) => {
       console.log(err)
     })
     const json = await response.json()
@@ -26,6 +29,13 @@ export const useUpdate = () => {
 
     if (response.ok) {
       setIsLoading(false)
+
+      const newUser = await JSON.parse(sessionStorage.getItem('user'))
+        newUser.first_name = first_name,
+        newUser.last_name = last_name,
+        newUser.cellno = cellno
+
+      sessionStorage.setItem('user', JSON.stringify(newUser))
       console.log('response', JSON.stringify(json))
     }
   }
