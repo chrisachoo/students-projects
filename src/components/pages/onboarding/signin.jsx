@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSignin } from '../../hooks/useSignin'
 import { Input, SecondaryButton, RemeberMe, SubText } from '../../index'
-import shopping from '../../../images/shopping.jpg'
+import shopping from '../../../images/signin.svg'
 import './onboarding.css'
 
 const SignIn = () => {
