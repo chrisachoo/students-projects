@@ -18,7 +18,7 @@ const Input = styled.input`
     margin-bottom: 1em;
 `
 
-const FormInput = ({label, type, placeholder, name, value, onChange, disabled }) => {
+const FormInput = ({label, type, placeholder, name, value, onChange, required, disabled, pattern, title }) => {
   return (
     <Container>
         <Label>{label}</Label>
@@ -27,7 +27,10 @@ const FormInput = ({label, type, placeholder, name, value, onChange, disabled })
           placeholder={placeholder} 
           name={name} value={value} 
           onChange={onChange} 
+          required={required}
           disabled={disabled}
+          pattern={pattern}
+          title={title}
           >
         </Input>
     </Container>

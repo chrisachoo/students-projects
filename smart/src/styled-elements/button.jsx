@@ -12,9 +12,9 @@ const Button = styled.button `
   width: 100%;
 `
 
-const FullWidthButton = ({ onClick, label }) => {
+const FullWidthButton = ({ onClick, label, disabled }) => {
   return (
-    <Button className='button' onClick={onClick}>{label}</Button>
+    <Button className='button' onClick={onClick} disabled={disabled}>{label}</Button>
   )
 }
 

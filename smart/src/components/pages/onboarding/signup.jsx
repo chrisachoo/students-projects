@@ -56,6 +56,9 @@ const SignUp = () => {
                 value={form.first_name}
                 onChange={handleFormChange}
                 placeholder={`First Name`}
+                required={true}
+                pattern={`[a-zA-Z]*`}
+                title={`Only letters (a-z, A-Z)`}
               />
 
               <Input
@@ -65,6 +68,9 @@ const SignUp = () => {
                 value={form.last_name}
                 onChange={handleFormChange}
                 placeholder={`Last Name`}
+                required={true}
+                pattern={`[a-zA-Z]*`}
+                title={`Only letters (a-z, A-Z)`}
               />
             </div>
 
@@ -84,6 +90,8 @@ const SignUp = () => {
             value={form.cellno}
             onChange={handleFormChange}
             placeholder={`Cell Number`}
+            pattern={`[0-9]*`}
+            min
           />
 
 
