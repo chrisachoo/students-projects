@@ -11,7 +11,7 @@ const Footer = () => {
                     <li><a href='#'>Sitemap</a></li>
                 </div>
                 <div className='footer__container-content'>
-                    <p className='name'>Lifestyle Store</p>
+                    <p className='name'>Sharp Witted</p>
                     <li><a href='#'>Contact Us</a></li>
                     <li><a href='#'>About Us</a></li>
                     <li><a href='#'>Careers</a></li>

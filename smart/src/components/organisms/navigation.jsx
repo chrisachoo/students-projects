@@ -1,24 +1,46 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../hooks/useAuthContext'
+import { useSignout } from '../hooks/useSignout'
 import { IoMdCart, IoMdSettings } from 'react-icons/io'
-import { FaSignOutAlt } from 'react-icons/fa'
+import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa'
 import './organisms.css'
 
 const Navigation = () => {
 
-  const [toggle, setToggle] = useState(false)
+  const { signout } = useSignout()
+  const { user } = useAuthContext()
+
+  const handleSignout = () => {
+    signout()
+  }
+
+  let navigate = useNavigate()
+  const toSignin = () => {
+    navigate('signin')
+  }
+
+  const checkSignin = () => {
+    !user ? navigate('/signin') : navigate('/profile')
+  }
 
   return (
     <section className='navigation'>
       <div className='navigation__content'>
-        <p>Lifestyle Store</p>
+        <p onClick={() => navigate('/')}>Sharp Witted</p>
         <div className='navigation__content-search'>
           <input type='search' placeholder='Search' />
         </div>
       </div>
       <div className='navigation__buttons'>
-        <li><p><IoMdCart/>Cart</p></li>
-        <li><p><IoMdSettings/>Settings</p></li>
-        <li><p><FaSignOutAlt/>Logout</p></li>
+        <li ><p><IoMdCart />Cart</p></li>
+        <li onClick={() => checkSignin()}><p><IoMdSettings />Settings</p></li>
+        {!user && (
+          <li onClick={() => toSignin()}><p><FaSignInAlt />SignIn</p></li>
+        )}
+        {user && (
+          <li onClick={handleSignout}><p><FaSignOutAlt />Logout</p></li>
+        )}
       </div>
     </section>
   )

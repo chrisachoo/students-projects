@@ -6,6 +6,8 @@ import './App.css'
 
 function App() {
 
+  let location = useLocation()
+
   return (
     <div className='app'>
       {
