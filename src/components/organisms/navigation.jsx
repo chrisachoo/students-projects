@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useSignout } from '../hooks/useSignout'
 import { IoMdCart, IoMdSettings } from 'react-icons/io'
 import { FaSignOutAlt, FaSignInAlt } from 'react-icons/fa'
 import './organisms.css'
+import SideNavigation from './sidenavigation'
 
 const Navigation = () => {
 
@@ -41,6 +41,9 @@ const Navigation = () => {
         {user && (
           <li onClick={handleSignout}><p><FaSignOutAlt />Logout</p></li>
         )}
+      </div>
+      <div className='mobile-container'>
+          <SideNavigation/>
       </div>
     </section>
   )

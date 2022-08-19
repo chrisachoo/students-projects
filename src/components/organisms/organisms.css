@@ -49,6 +49,7 @@ li {
     border-radius: 5px;
 }
 
+.sidenav p,
 .navigation__buttons p {
     display: flex;
     align-items: center;
@@ -67,6 +68,7 @@ li {
     border-radius: 5px;
 }
 
+.sidenav svg,
 .navigation__buttons svg {
     margin-right: 5px;
 }
@@ -84,6 +86,35 @@ li {
 .footer__container-content a:hover {
     text-decoration: underline !important;
     color: #23527c;
+}
+
+/* SIDENAVIGATION */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .8);
+    overflow-x: hidden;
+    transition: all 1s ease;
+    padding-top: 60px;
+}
+
+
+.sidenav p {
+    margin-left: .5em;
+    font-size: 20px !important;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -109,6 +140,7 @@ li {
 }
 
 @media only screen and (min-width: 992px) {
+
     .navigation,
     .footer {
         padding: 1em 6em;
@@ -116,6 +148,7 @@ li {
 }
 
 @media only screen and (min-width: 1200px) {
+
     .navigation,
     .footer {
         padding: 1em 8em;
