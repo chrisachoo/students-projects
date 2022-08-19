@@ -79,20 +79,21 @@ const SignUp = () => {
               type={`email`}
               name={`email`}
               value={form.email}
+              required={true}
               onChange={handleFormChange}
               placeholder={`Enter your email`}
             />
 
             <Input
-            label={`Cell Number`}
-            type={`text`}
-            name={`cellno`}
-            value={form.cellno}
-            onChange={handleFormChange}
-            placeholder={`Cell Number`}
-            pattern={`[0-9]*`}
-            min
-          />
+              label={`Cell Number`}
+              type={`text`}
+              name={`cellno`}
+              value={form.cellno}
+              onChange={handleFormChange}
+              required={true}
+              placeholder={`Cell Number`}
+              pattern={`[0-9]*`}
+            />
 
 
             <Input
@@ -102,6 +103,7 @@ const SignUp = () => {
               value={form.password}
               onChange={handleFormChange}
               placeholder={`Enter password`}
+              required={true}
             />
 
             <SecondaryButton

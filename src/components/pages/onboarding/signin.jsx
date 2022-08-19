@@ -48,6 +48,7 @@ const SignIn = () => {
               value={form.email}
               onChange={handleFormChange}
               placeholder={`Enter your email`}
+              required={true}
             />
 
             <Input
@@ -57,6 +58,7 @@ const SignIn = () => {
               value={form.password}
               onChange={handleFormChange}
               placeholder={`Enter password`}
+              required={true}
             />
 
             <RemeberMe />
