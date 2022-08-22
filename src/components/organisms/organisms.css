@@ -2,8 +2,8 @@
 .footer {
     display: flex;
     padding: 1em;
-    background: #2874f0;
-    color: #FFF;
+    background: var(--primary-color);
+    color: var(--tertiary-color);
 }
 
 .navigation input {
@@ -11,8 +11,8 @@
 }
 
 .footer {
-    background: transparent;
-    color: #306060;
+    background: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 li {
@@ -79,13 +79,13 @@ li {
 }
 
 .footer__container-content a {
-    font-size: 15px;
-    color: #82AFB0;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--tertiary-color);
 }
 
 .footer__container-content a:hover {
     text-decoration: underline !important;
-    color: #23527c;
 }
 
 /* SIDENAVIGATION */

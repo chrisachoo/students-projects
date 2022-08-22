@@ -1,6 +1,6 @@
 import { useState, useNavigate, useEffect } from 'react'
 import { useUpdate } from '../../hooks/useUpdate'
-import { Input } from '../../index'
+import { Button, Input } from '../../index'
 
 const Personal = () => {
 
@@ -89,9 +89,9 @@ const Personal = () => {
           placeholder={`First Name`}
           disabled={true}
         />
-        <div className='group__content'>
-          <button className='btn btn-primary'>Cancel</button>
-          <button className='btn btn-secondary' type='submit'>Save</button>
+        <div style={{marginTop: '1em', display: 'flex', flexDirection: 'row', gap: '1em', justifyContent: 'right'}}>
+          <button className='btn btn-secondary'>Cancel</button>
+          <Button label={`Save`} type='submit'/>
         </div>
       </form>
     </div>

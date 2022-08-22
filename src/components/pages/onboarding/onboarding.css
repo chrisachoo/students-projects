@@ -1,39 +1,20 @@
 .container {
     display: grid;
-    height: 90vh;
+    height: 100vh;
+    align-items: center;
 }
 
 .container__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 2em;
-    background: white;
-    color: var(--primary-text);
+    color: var(--primary-color);
 }
 
 .container__right {
     display: none;
 }
 
-.welcome-text {
-    padding-bottom: 1em;
-    text-transform: uppercase;
-    font-size: 15px !important;
-    font-weight: 600;
-}
-
-.redirect-text i {
-    font-weight: 700;
-    font-style: normal;
-    cursor: pointer;
-}
-
-.group__content {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    float: right;
+.error,
+.container__form-text {
+    margin-bottom: 2em;
 }
 
 div.error {
@@ -42,183 +23,34 @@ div.error {
     border: 1px solid var(--error);
     color: var(--error);
     border-radius: 4px;
-    margin-bottom: 1em;
-    ;
 }
 
-input.error {
-    border: 1px solid var(--error);
-}
-
-form {
-    margin-top: 1em;
-}
-
-.redirect-text span:hover,
-.redirect-text i:hover {
-    color: #2874f0;
-}
-
-.inline__input {
-    display: flex;
-    gap: 1em;
-}
-
-/* landing page */
-section {
-    background-image: url('../../../images/cropped-woman.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.landing {
-    display: grid;
-    gap: 1em;
-}
-
-.landing__left,
-.card-content {
-    background: #eee;
-    padding: 1em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
-}
-
-.card-content:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.landing__left-one h4 {
-    font-size: 25px;
-    text-transform: capitalize;
-}
-
-.landing__left-one p {
-    font-size: 15px;
-    color: rgba(0, 0, 0, .8)
-}
-
-.landing__left-one p:hover,
-.card-content p:hover {
-    color: #2874f0;
-}
-
-.landing__right-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.landing__right-filter,
-.landing__right-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.landing__right-card {
+.padding {
     margin-top: 8px;
 }
 
-.card-content p {
-    font-size: 12px;
-    color: rgba(0, 0, 0, .8)
+.redirect-text i {
+    font-weight: 700;
+    font-style: normal;
 }
 
-
-.landing__right-container label {
-    font-size: 15px;
-    margin-bottom: 2px;
+.redirect-text i:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
 }
 
-.landing__right-container select {
-    font-size: .9rem;
-    padding: 2px 5px;
-    border-radius: 5px;
-    outline: none;
-}
-
-.landing__right-container footer {
-    font-size: .8rem;
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-}
-
-.card-image {
-    margin: 1em 0;
-}
-
-.card-image img {
-    width: 100%;
-    object-fit: cover;
-}
-
-@media only screen and (min-width: 1050px) {
-    .container {
+@media only screen and (min-width: 992px) {
+    .container { 
         grid-template-columns: 40% auto;
-        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     }
 
     .container__right {
         display: unset;
+        margin-left: 4em;
     }
 
     .container__right img {
-        height: 100%;
         width: 100%;
-    }
-
-    .container__form-text {
-        padding-bottom: 2em;
-    }
-
-    .landing {
-        grid-template-columns: 30% auto;
-        gap: 1em;
-    }
-
-    .landing__cards {
-        flex-direction: row;
-    }
-
-    .landing__right-filter,
-    .landing__right-card {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .card-content {
-        width: 30%;
-    }
-
-}
-
-@media only screen and (min-width: 1200px) {
-    .container__form-text {
-        padding-bottom: 2em;
-    }
-
-    .container__form-text h2 {
-        font-size: 30px;
-        padding-bottom: 8px;
-    }
-
-    .container__form-text p {
-        font-size: 18px;
-    }
-}
-
-@media only screen and (min-width: 1500px) {
-    .container__form-text {
-        padding-bottom: 2em;
-    }
-
-    .container__form-text h2 {
-        font-size: 40px;
-        padding-bottom: 8px;
-    }
-
-    .container__form-text p {
-        font-size: 25px;
+        height: 100%;
     }
 }

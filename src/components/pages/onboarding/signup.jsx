@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Input, SecondaryButton } from '../../index'
-import shopping from '../../../images/signup.svg'
+import { Input, Button } from '../../index'
+import shopping from '../../../images/3967148.jpg'
 import './onboarding.css'
 
 const SignUp = () => {
 
+  let location = useLocation()
   let navigate = useNavigate()
   const [form, setForm] = useState({
     first_name: '',
@@ -105,12 +106,15 @@ const SignUp = () => {
               placeholder={`Enter password`}
               required={true}
             />
-
-            <SecondaryButton
-              type='submit'
-              label={`Sign up`}
-              disabled={isLoading}
-            />
+            
+            <div className='padding'>
+              <Button
+                type='submit'
+                label={`Sign up`}
+                width={`100%`}
+                disabled={isLoading}
+              />
+            </div>
 
           </form>
         </div>
