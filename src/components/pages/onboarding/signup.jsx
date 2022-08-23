@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Input, Button } from '../../index'
-import shopping from '../../../images/3967148.jpg'
+import shopping from '../../../images/sales.jpg'
 import './onboarding.css'
 
 const SignUp = () => {

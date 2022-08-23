@@ -45,7 +45,7 @@ const Personal = () => {
   }
 
   return (
-    <div className='section__padding'>
+    <div className='personal'>
       <h4>Personal Details</h4>
 
       <form onSubmit={handleSubmit}>

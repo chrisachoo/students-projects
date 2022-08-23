@@ -47,7 +47,7 @@ const LandingPage = ({ data }) => {
               padding: '.5em 1em',
               display: 'flex', alignItems: 'center',
               clearIconMargin: '.5em 1em',
-              zIndex: '100'
+              zIndex: '20'
             }}
           />
 

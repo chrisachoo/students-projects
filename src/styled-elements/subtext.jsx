@@ -10,6 +10,10 @@ const P = styled.p`
 const SPAN = styled.span`
     font-weight: 700;
     cursor: pointer;
+    &:hover {
+      color: #FFBB00;
+      text-decoration: underline;
+  }
 `
 
 const SubText = ({text, linkText, onClick}) => {
