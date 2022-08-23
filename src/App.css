@@ -59,7 +59,35 @@ input {
   border: 2px solid var(--primary-color);
   border-radius: 5px;
   outline: none;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
+}
+
+/* CARDS */
+.card {
+  background: var(--primary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-image img {
+  width: 100%;
+}
+
+.card-text {
+  padding: 8px;
+}
+
+.card-text p {
+  color: var(--tertiary-color);
+  font-size: 12px;
+}
+
+.card-text span {
+  color: var(--secondary-color);
+  font: normal 500 18px;
 }
 
 /* GLOBAL PADDING */

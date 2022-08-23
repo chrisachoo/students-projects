@@ -8,9 +8,32 @@ function App() {
 
   let location = useLocation()
 
+  const malls = [
+    {
+      id: 0,
+      name: 'Clearwater Mall'
+    },
+    {
+      id: 1,
+      name: 'Fourways Mall'
+    },
+    {
+      id: 2,
+      name: 'Sandton City'
+    },
+    {
+      id: 3,
+      name: 'Menlyn Park'
+    },
+    {
+      id: 4,
+      name: 'Woodlands Boulevard'
+    }
+  ]
+
   const Home = () => (
     <React.Fragment>
-      <LandingPage />
+      <LandingPage data={malls}/>
       <Footer />
     </React.Fragment>
   )
