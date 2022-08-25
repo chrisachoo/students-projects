@@ -59,7 +59,28 @@ input {
   border: 2px solid var(--primary-color);
   border-radius: 5px;
   outline: none;
-  /* margin-bottom: 1em; */
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+.radio-button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1em;
+}
+
+.radio-button label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radio-button input {
+  width:  unset !important;
 }
 
 /* CARDS */

@@ -1,4 +1,4 @@
-const FormInput = ({label, type, placeholder, name, value, onChange, required, disabled, pattern, title }) => {
+const FormInput = ({label, type, placeholder, name, value, onChange, required, disabled, pattern, title, hint }) => {
   return (
     <div className='grid-display'>
         <label>{label}</label>
