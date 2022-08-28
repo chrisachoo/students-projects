@@ -7,9 +7,9 @@ import shopping from '../../../images/dribble.jpg'
 import './onboarding.css'
 
 const SignIn = () => {
+
   let navigate = useNavigate()
   let location = useLocation()
-  const [load, setLoading] = useState()
   const [form, setForm] = useState({
     email: '',
     password: ''

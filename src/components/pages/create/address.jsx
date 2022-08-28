@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAddress } from '../../hooks/useAddress'
 import { Button, Input } from '../../'
 import './create.css'
 
 const Address = () => {
+
+  const { addAddress, error, isLoading } = useAddress()
   const [form, setForm] = useState({
-    user_id: '',
     address_type: '',
     street_address: '',
     suburb: '',
@@ -12,6 +14,24 @@ const Address = () => {
     province: '',
     postal_code: ''
   })
+
+  const [userToken, getUserToken] = useState({
+    user_id: '',
+    token: ''
+  })
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await JSON.parse(sessionStorage.getItem('user'))
+      if (user) {
+        getUserToken({
+          token: user.token
+        })
+      }
+    }
+
+    fetchUser().catch(console.error)
+  }, [])
 
   const handleFormChange = (event) => {
     const updatedForm = { ...form }
@@ -23,7 +43,9 @@ const Address = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    console.log('form ', form)
+    let { token } = userToken
+    let { address_type, street_address, suburb, city_or_town, province, postal_code } = form
+    await addAddress(address_type, street_address, suburb, city_or_town, province, postal_code, token)
   }
 
   return (

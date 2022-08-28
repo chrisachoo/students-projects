@@ -6,7 +6,7 @@ export const useSignin = () => {
   let navigate = useNavigate()
 
   const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const { dispatch } = useAuthContext()
   const _url = 'https://e-mall-backend.herokuapp.com'
 

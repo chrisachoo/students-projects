@@ -13,6 +13,7 @@ const Navigation = () => {
 
   const handleSignout = () => {
     signout()
+    navigate('/')
   }
 
   let navigate = useNavigate()

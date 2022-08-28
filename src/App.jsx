@@ -1,39 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { SignIn, SignUp, Profile, LandingPage } from './components/pages'
+import { SignIn, SignUp, Profile, LandingPage, Products } from './components/pages'
 import { Footer, Navigation } from './components'
 import './App.css'
 
 function App() {
 
   let location = useLocation()
+  const [malls, setMalls] = useState([])
 
-  const malls = [
-    {
-      id: 0,
-      name: 'Clearwater Mall'
-    },
-    {
-      id: 1,
-      name: 'Fourways Mall'
-    },
-    {
-      id: 2,
-      name: 'Sandton City'
-    },
-    {
-      id: 3,
-      name: 'Menlyn Park'
-    },
-    {
-      id: 4,
-      name: 'Woodlands Boulevard'
-    }
-  ]
+  useEffect(() => {
+    fetch('https://e-mall-backend.herokuapp.com/mall/get-malls')
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw res
+      }).then(data => {
+        setMalls(data)
+      })
+  }, [])
 
   const Home = () => (
     <React.Fragment>
-      <LandingPage data={malls}/>
+      <LandingPage data={malls} />
       <Footer />
     </React.Fragment>
   )
@@ -48,6 +38,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/:name' element={<Products />} />
       </Routes>
     </div>
   )

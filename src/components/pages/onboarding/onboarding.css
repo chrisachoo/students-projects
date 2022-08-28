@@ -64,6 +64,7 @@ div.error {
 
 .onboarding__content-category li:hover {
     text-decoration: underline !important;
+    cursor: pointer;
 }
 
 .onboarding__devider {
@@ -97,6 +98,7 @@ div.error {
     background: var(--primary-color);
     color: var(--tertiary-color);
     padding: 1em;
+    height: fit-content;
 }
 
 .profile__left h2 {
