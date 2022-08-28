@@ -10,6 +10,8 @@ import './onboarding.css'
 
 const LandingPage = ({ data }) => {
 
+  const navigate = useNavigate()
+  const location = useLocation()
   const [selectedCategory, setSelectedCategory] = useState()
   const [category, setCategory] = useState()
   const [products, setProducts] = useState()
@@ -62,7 +64,8 @@ const LandingPage = ({ data }) => {
     const prod = await getProducts(_id)
     console.log('prod: ', prod)
 
-    
+    navigate('/products', { state: prod })
+
   }
 
   const handleOnSearch = (string, results) => {

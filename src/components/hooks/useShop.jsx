@@ -26,7 +26,7 @@ export const useShop = () => {
     }
 
     const getProducts = async (_id) => {
-        const response = await fetch(`${_url}/product//get-products/${_id}`, {
+        const response = await fetch(`${_url}/product/get-products/${_id}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         }).catch((err) => {

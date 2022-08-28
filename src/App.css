@@ -95,6 +95,7 @@ form {
 
 .card-image img {
   width: 100%;
+  object-fit: fill;
 }
 
 .card-text {

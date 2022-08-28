@@ -1,0 +1,54 @@
+.card__section {
+  display: grid;
+  gap: 2em;
+}
+
+.product__pagination {
+  width: 100%;
+}
+
+/* pagination styles */
+.pagination__buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding-top: 2em;
+  padding-bottom: 1em;
+
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  list-style-type: georgian;
+}
+
+.previous__button,
+.next__button {
+  padding: .5em 1em;
+  font-size: 1em;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination__active a {
+  color: var(--secondary-color);
+}
+
+.pagination__disabled a {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .pagination__buttons {
+    justify-content: end;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .card__section {
+    grid-template-columns: 30% 30% 30%;
+    justify-content: space-between;
+  }
+}
