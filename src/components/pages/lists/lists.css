@@ -40,9 +40,51 @@
   display: none;
 }
 
+/* PROCUCTS DETAILS */
+.detail {
+  display: grid;
+}
+
+.detail-card {
+  display: grid;
+  margin-top: 2em;
+  gap: 8px;
+}
+
+.detail {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+}
+
+.detail__picture img {
+  width: 100%;
+}
+
+.detail__actions {
+  margin-top: 2em;
+  border-top: 1px solid var(--primary-color);
+  padding-top: 8px;
+}
+
+.detail__actions li {
+  list-style: disc;
+   font-size: 12px;
+}
+
+
+
 @media only screen and (min-width: 768px) {
   .pagination__buttons {
     justify-content: end;
+  }
+
+  .detail {
+    grid-template-columns: 40% auto;
+  }
+
+  .detail__content {
+    padding: 0 1em;
+    margin-left: 2em;
   }
 }
 

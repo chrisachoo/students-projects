@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useShop } from '../../hooks/useShop'
 import { useNavigate } from 'react-router-dom'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-import { Button } from '../../'
+import { Button, Loader } from '../../'
 import './onboarding.css'
 
 const LandingPage = ({ data }) => {
@@ -10,6 +10,7 @@ const LandingPage = ({ data }) => {
   const navigate = useNavigate()
   const [category, setCategory] = useState()
   const [shops, setShops] = useState()
+  const [loading, setLoading] = useState(false)
   const { getAllCategory, getProducts, getMallShops } = useShop()
 
   // GET ALL THE CATEGORY LIST
@@ -24,9 +25,11 @@ const LandingPage = ({ data }) => {
 
   // GET PRODUCTS OF SELECTED CATEGORY
   const getSelectedCategory = async (event) => {
+    setLoading(true)
     const found = await category.find(({ name }) => name === event.currentTarget.textContent)
     const prod = await getProducts(found.id)
 
+    setLoading(false)
     if (prod.length > 0) {
       navigate('/products', { state: prod })
     }
@@ -47,6 +50,7 @@ const LandingPage = ({ data }) => {
 
   return (
     <section className='section__padding onboarding'>
+      {loading ? <Loader /> : null}
       <h2>Welcome!</h2>
       <p>Please, choose one of the options below to start shopping</p>
       <div className='onboarding__content'>

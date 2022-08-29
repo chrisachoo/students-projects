@@ -3,16 +3,24 @@ import { Rings } from 'react-loader-spinner'
 
 const Loader = () => {
   return (
-    <Rings
-      height="80"
-      width="80"
-      color="#4fa94d"
-      radius="6"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-      ariaLabel="rings-loading"
-    />
+    <div className='loading-container'>
+      <Rings
+        height="100"
+        width="100"
+        color="#FFBB00"
+        radius="6"
+        wrapperStyle={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          width: '100%'
+        }}
+        wrapperClass="loading"
+        visible={true}
+        ariaLabel="rings-loading"
+      />
+    </div>
   )
 }
 

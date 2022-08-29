@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { Card } from '../../'
 import './lists.css'
@@ -9,8 +9,7 @@ const Products = () => {
   const [pages, setPageNumber] = useState(0)
   const perPage = 9
   const pageVisited = pages * perPage
-
-  console.log('getting products: ', state)
+  const navigate = useNavigate()
 
   const listproducts = state
     .slice(pageVisited, pageVisited + perPage)
@@ -21,9 +20,15 @@ const Products = () => {
           path={state.picture_url}
           description={state.description}
           price={state.price}
+          onClick={() => getProductDetails(state)}
         />
       )
     })
+
+  const getProductDetails = async (state) => {
+    console.log('currentTarget: ', state)
+    navigate('/product-details', { state: state })
+  }
 
   const pageCount = Math.ceil(state.length / perPage)
   const changePage = ({ selected }) => {
@@ -32,9 +37,9 @@ const Products = () => {
 
   return (
     <div className='section__padding'>
-    <div className='card__section'>
-      {listproducts}
-    </div>
+      <div className='card__section'>
+        {listproducts}
+      </div>
       <div className='product__pagination'>
         <ReactPaginate
           previousLabel={"Previous"}

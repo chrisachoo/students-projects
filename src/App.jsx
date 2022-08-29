@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { SignIn, SignUp, Profile, LandingPage, Products } from './components/pages'
+import { SignIn, SignUp, Profile, LandingPage, Products, Detail } from './components/pages'
 import { Footer, Navigation } from './components'
 import './App.css'
 
@@ -39,6 +39,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/product-details' element={<Detail />} />
       </Routes>
     </div>
   )
