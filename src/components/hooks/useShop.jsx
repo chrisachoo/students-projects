@@ -2,47 +2,66 @@ import { useState } from 'react'
 
 export const useShop = () => {
 
-    const [loading, setIsLoading] = useState(null)
-    const _url = 'https://e-mall-backend.herokuapp.com'
+  const [loading, setIsLoading] = useState(null)
+  const _url = 'https://e-mall-backend.herokuapp.com'
 
-    const getAllCategory = async () => {
+  const getAllCategory = async () => {
 
-        const response = await fetch(`${_url}/category/get-all-categories`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        }).catch((err) => {
-            console.log(err)
-        })
-        const json = await response.json()
+    const response = await fetch(`${_url}/category/get-all-categories`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const json = await response.json()
 
-        if (!response.ok) {
-            setIsLoading(false)
-        }
-
-        if (response.ok) {
-            setIsLoading(false)
-            return json
-        }
+    if (!response.ok) {
+      setIsLoading(false)
     }
 
-    const getProducts = async (_id) => {
-        const response = await fetch(`${_url}/product/get-products/${_id}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        }).catch((err) => {
-            console.log(err)
-        })
-        const products = await response.json()
+    if (response.ok) {
+      setIsLoading(false)
+      return json
+    }
+  }
 
-        if (!response.ok) {
-            setIsLoading(false)
-        }
+  const getProducts = async (_id) => {
+    const response = await fetch(`${_url}/product/get-products/${_id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const products = await response.json()
 
-        if (response.ok) {
-            setIsLoading(false)
-            return products
-        }
+    if (!response.ok) {
+      setIsLoading(false)
     }
 
-    return { getAllCategory, getProducts }
+    if (response.ok) {
+      setIsLoading(false)
+      return products
+    }
+  }
+
+  const getMallShops = async (_id) => {
+    const response = await fetch(`${_url}/shop/get-shops-for-a-mall/${_id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const shops = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+    }
+
+    if (response.ok) {
+      setIsLoading(false)
+      return shops
+    }
+  }
+
+  return { getAllCategory, getProducts, getMallShops }
 }

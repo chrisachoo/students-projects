@@ -118,6 +118,7 @@ div.error {
     .container__right {
         display: unset;
         margin-left: 4em;
+        background: var(--primary-color);
     }
 
     .container__right img {

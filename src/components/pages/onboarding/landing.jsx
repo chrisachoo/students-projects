@@ -1,83 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import { useShop } from '../../hooks/useShop'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-import { Card } from '../../'
-import testImage from '../../../images/f1.jpg'
-import testImage1 from '../../../images/f2.jpg'
-import testImage2 from '../../../images/f3.jpg'
+import { Button } from '../../'
 import './onboarding.css'
 
 const LandingPage = ({ data }) => {
 
   const navigate = useNavigate()
-  const location = useLocation()
-  const [selectedCategory, setSelectedCategory] = useState()
   const [category, setCategory] = useState()
-  const [products, setProducts] = useState()
-  const { getAllCategory, getProducts } = useShop()
+  const [shops, setShops] = useState()
+  const { getAllCategory, getProducts, getMallShops } = useShop()
 
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     const categories = await getAllCategory()
-  //     setCategory(categories)
-  //   }
-
-  //   fetchCategories().catch(console.error)
-  // }, [])
-
-  console.log('check state: ', category)
-
-  const getSelectedCategory = async (event) => {
-    console.log(event.currentTarget.textContent)
-    let _id
-
-    if (event.currentTarget.textContent === 'Electronics') {
-      _id = 9
-      console.log(_id)
-
-    } else if (event.currentTarget.textContent === 'Home and Kitchen') {
-      _id = 10
-      console.log(_id)
-
-    } else if (event.currentTarget.textContent === 'Beauty and personal care') {
-      _id = 11
-      console.log(_id)
-
-    } else if (event.currentTarget.textContent === 'Fashion') {
-      _id = 12
-      console.log(_id)
-
-    } else if (event.currentTarget.textContent === 'Sports and Outdoors') {
-      _id = 13
-      console.log(_id)
-
-    } else if (event.currentTarget.textContent === 'Toys and Games') {
-      _id = 14
-      console.log(_id)
-
-    } else {
-      _id = 15
-      console.log(_id)
+  // GET ALL THE CATEGORY LIST
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categoryList = await getAllCategory()
+      setCategory(categoryList)
     }
 
-    const prod = await getProducts(_id)
-    console.log('prod: ', prod)
+    fetchCategories().catch(console.error)
+  }, [])
 
-    navigate('/products', { state: prod })
+  // GET PRODUCTS OF SELECTED CATEGORY
+  const getSelectedCategory = async (event) => {
+    const found = await category.find(({ name }) => name === event.currentTarget.textContent)
+    const prod = await getProducts(found.id)
 
+    if (prod.length > 0) {
+      navigate('/products', { state: prod })
+    }
   }
 
   const handleOnSearch = (string, results) => {
     console.log(string, results)
   }
 
-  const handleOnSelect = (item) => {
-    console.log('mall name: ', item.name)
-    console.log('mall id: ', item.id)
+  const handleOnSelect = async (item) => {
+    // GET SHOPS OF SELECTED MALL
+    const response = await getMallShops(item.id)
+    if (response.length > 0) {
+      console.log('mall shops: ', response)
+      setShops(response)
+    }
   }
-
-
 
   return (
     <section className='section__padding onboarding'>
@@ -115,7 +81,7 @@ const LandingPage = ({ data }) => {
           />
 
           <ReactSearchAutocomplete
-            items={data}
+            items={shops}
             onSearch={handleOnSearch}
             onSelect={handleOnSelect}
             autoFocus
@@ -130,23 +96,6 @@ const LandingPage = ({ data }) => {
               clearIconMargin: '.5em 1em',
               zIndex: '1'
             }}
-          />
-        </div>
-      </div>
-      <div className='onboarding__highlights'>
-        <h2>Deals On All Your Favorites</h2>
-        <div className='onboarding__highlights-shop'>
-          <Card path={testImage}
-            description={`Men Notch Collar Colorblock Shirt`}
-            price={`250`}
-          />
-          <Card path={testImage1}
-            description={`Men Notch Collar Colorblock Shirt`}
-            price={`250`}
-          />
-          <Card path={testImage2}
-            description={`Men Notch Collar Colorblock Shirt`}
-            price={`250`}
           />
         </div>
       </div>
