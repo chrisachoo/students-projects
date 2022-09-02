@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSignin } from '../../hooks/useSignin'
-import { Input, Button, RemeberMe, SubText } from '../../index'
-import { Rings } from 'react-loader-spinner'
+import { Input, Button, Loader, SubText } from '../../'
 import shopping from '../../../images/dribble.jpg'
 import './onboarding.css'
 
@@ -33,6 +32,7 @@ const SignIn = () => {
 
   return (
     <div className='section__padding container'>
+      {isLoading ? <Loader /> : null}
       <div className='container__form'>
         <div className='container__form-text'>
           <h2>Welcome back</h2>

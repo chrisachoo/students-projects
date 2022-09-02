@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Input, Button } from '../../index'
+import { Input, Loader, Button } from '../../index'
 import shopping from '../../../images/4944667.jpg'
 import './onboarding.css'
 
@@ -38,6 +38,7 @@ const SignUp = () => {
 
   return (
     <div className='section__padding'>
+      {isLoading ? <Loader /> : null}
       <div className='container'>
         <div className='container__form'>
           <div className='container__form-text'>
@@ -106,7 +107,7 @@ const SignUp = () => {
               placeholder={`Enter password`}
               required={true}
             />
-            
+
             <div className='padding'>
               <Button
                 type='submit'
