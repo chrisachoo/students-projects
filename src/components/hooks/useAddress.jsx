@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useAuthContext } from './useAuthContext'
 
 export const useAddress = () => {
 
+  const { user } = useAuthContext()
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const _url = 'https://e-mall-backend.herokuapp.com'
@@ -25,6 +27,28 @@ export const useAddress = () => {
 
     if (response.ok) {
       setIsLoading(false)
+    }
+  }
+
+  const getAddress = async () => {
+    setIsLoading(true)
+    setError(null)
+
+    const response = await fetch(`${_url}/shop/get-shops-for-a-mall/${_id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const shops = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+    }
+
+    if (response.ok) {
+      setIsLoading(false)
+      return shops
     }
   }
 

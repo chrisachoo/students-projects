@@ -5,7 +5,7 @@ export const useConnect = () => {
   const [category, setCategory] = useState([])
   const _url = 'https://e-mall-backend.herokuapp.com'
 
-  const getMallShops = () => {
+  const getMallShops = async () => {
     await fetch(`${_url}/shop/get-shops-for-a-mall`)
       .then(response => {
         if (response.ok) {
@@ -17,7 +17,7 @@ export const useConnect = () => {
       })
   }
 
-  const getAllCategory = () => {
+  const getAllCategory = async () => {
     await fetch(`${_url}/shop/get-category-for-a-mall`)
       .then(response => {
         if (response.ok) {

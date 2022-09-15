@@ -25,6 +25,10 @@ const Navigation = () => {
     !user ? navigate('/signin') : navigate('/profile')
   }
 
+  const displayCartItems = () => {
+    navigate('/cart-items')
+  }
+
   return (
     <section className='navigation'>
       <div className='navigation__content'>
@@ -34,7 +38,7 @@ const Navigation = () => {
         </div>
       </div>
       <div className='navigation__buttons'>
-        <li ><p><IoMdCart />Cart</p></li>
+        <li onClick={displayCartItems}><p><IoMdCart />Cart</p></li>
         <li onClick={() => checkSignin()}><p><IoMdSettings />Settings</p></li>
         {!user && (
           <li onClick={() => toSignin()}><p><FaSignInAlt />SignIn</p></li>
@@ -44,7 +48,7 @@ const Navigation = () => {
         )}
       </div>
       <div className='mobile-container'>
-          <SideNavigation/>
+        <SideNavigation />
       </div>
     </section>
   )

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export const useShop = () => {
 
-  const [loading, setIsLoading] = useState(null)
+  const [isLoading, setIsLoading] = useState(null)
   const _url = 'https://e-mall-backend.herokuapp.com'
 
   const getAllCategory = async () => {
@@ -63,5 +63,24 @@ export const useShop = () => {
     }
   }
 
-  return { getAllCategory, getProducts, getMallShops }
+  const shopProducts = async (shop_id) => {
+    const response = await fetch(`${_url}/product/get-products-for-shop/${shop_id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const shopProducts = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+    }
+
+    if (response.ok) {
+      setIsLoading(false)
+      return shopProducts
+    }
+  }
+
+  return { getAllCategory, getProducts, getMallShops, shopProducts, isLoading }
 }

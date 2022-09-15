@@ -11,7 +11,7 @@ const LandingPage = ({ data }) => {
   const [category, setCategory] = useState()
   const [shops, setShops] = useState()
   const [loading, setLoading] = useState(false)
-  const { getAllCategory, getProducts, getMallShops } = useShop()
+  const { getAllCategory, getProducts, getMallShops, shopProducts } = useShop()
 
   // GET ALL THE CATEGORY LIST
   useEffect(() => {
@@ -45,6 +45,17 @@ const LandingPage = ({ data }) => {
     if (response.length > 0) {
       console.log('mall shops: ', response)
       setShops(response)
+    }
+  }
+
+  // GET ALL THE PRODUCTS OF SELECTED SHOP
+  const getAllProductsofShop = async (item) => {
+    console.log('selected shop: ', item)
+    // const shop_id = item.id
+    const products = await shopProducts(item.id)
+    setLoading(false)
+    if (prod.length > 0) {
+      navigate('/products', { state: products })
     }
   }
 
@@ -87,7 +98,7 @@ const LandingPage = ({ data }) => {
           <ReactSearchAutocomplete
             items={shops}
             onSearch={handleOnSearch}
-            onSelect={handleOnSelect}
+            onSelect={getAllProductsofShop}
             autoFocus
             placeholder={`Search for shops`}
             showIcon={false}

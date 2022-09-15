@@ -11,6 +11,8 @@ const Products = () => {
   const pageVisited = pages * perPage
   const navigate = useNavigate()
 
+  const numberFormatter = Intl.NumberFormat('en-US')
+
   const listproducts = state
     .slice(pageVisited, pageVisited + perPage)
     .map((state) => {
@@ -19,7 +21,7 @@ const Products = () => {
           key={state.id}
           path={state.picture_url}
           description={state.description}
-          price={state.price}
+          price={numberFormatter.format(state.price)}
           onClick={() => getProductDetails(state)}
         />
       )

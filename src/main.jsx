@@ -4,11 +4,14 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext'
 import App from './App'
 import './index.css'
+import { CartProvider } from 'react-use-cart'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
-    <Router>
-      <App />
-    </Router>
+    <CartProvider>
+      <Router>
+        <App />
+      </Router>
+    </CartProvider>
   </AuthContextProvider>
 )
