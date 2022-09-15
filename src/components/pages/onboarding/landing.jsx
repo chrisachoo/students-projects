@@ -27,7 +27,7 @@ const LandingPage = ({ data }) => {
   const getSelectedCategory = async (event) => {
     setLoading(true)
     const found = await category.find(({ name }) => name === event.currentTarget.textContent)
-    const prod = await getProducts(found.id)
+    const prod = await getProducts(found.id).catch(() => {error})
 
     setLoading(false)
     if (prod.length > 0) {

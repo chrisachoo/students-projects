@@ -12,11 +12,9 @@ export const useSignin = () => {
   const { user } = useAuthContext()
   const _url = 'https://e-mall-backend.herokuapp.com'
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (token) => {
     setIsLoading(true)
     setError(null)
-    const token = user.token
-    console.log('check token', token)
 
     const response = await fetch(`${_url}/user/get-all/${token}`, {
       method: 'GET',
@@ -69,7 +67,7 @@ export const useSignin = () => {
         navigate('/')
       }
       else {
-        const allusers = await getAllUsers()
+        const allusers = await getAllUsers(token)
         setIsLoading(false)
         console.log('check all users: ', allusers)
         navigate('/admin/dashboard', { state: allusers })

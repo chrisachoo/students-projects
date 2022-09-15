@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSignout } from '../../hooks/useSignout'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { HiUsers, HiShoppingCart } from 'react-icons/hi'
 import { FaSignOutAlt, FaFileInvoice, FaTags } from 'react-icons/fa'
@@ -10,6 +11,7 @@ import './dashboard.css'
 const Dashboard = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
+  const { signout } = useSignout()
   console.log('response: ', state)
   const numberFormatter = Intl.NumberFormat('en-US')
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 export const useUpdate = () => {
 
@@ -25,13 +26,23 @@ export const useUpdate = () => {
     if (!response.ok) {
       setIsLoading(false)
       setError(json.error)
+      Swal.fire(
+        'Error',
+        json.error,
+        'error'
+      )
     }
 
     if (response.ok) {
       setIsLoading(false)
+      Swal.fire(
+        'Good job!',
+        'Updated successfully!',
+        'success'
+      )
 
       const newUser = await JSON.parse(sessionStorage.getItem('user'))
-        newUser.first_name = first_name,
+      newUser.first_name = first_name,
         newUser.last_name = last_name,
         newUser.cellno = cellno
 

@@ -1,10 +1,11 @@
 import { useState, useNavigate, useEffect } from 'react'
 import { useUpdate } from '../../hooks/useUpdate'
-import { Button, Input } from '../../index'
+import { Button, Input, Loader } from '../../index'
+import Swal from 'sweetalert2'
 
 const Personal = () => {
 
-  const { updateUser, isLoading, error } = useUpdate()
+  const { updateUser, isLoading } = useUpdate()
   const [form, setForm] = useState({
     first_name: '',
     last_name: '',
@@ -39,13 +40,14 @@ const Personal = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
+
     let { first_name, last_name, email, cellno, token } = form
     await updateUser(first_name, last_name, email, cellno, token)
   }
 
   return (
     <div className='personal'>
+      {isLoading ? <Loader /> : null}
       <h4>Personal Details</h4>
 
       <form onSubmit={handleSubmit}>
@@ -89,9 +91,9 @@ const Personal = () => {
           placeholder={`First Name`}
           disabled={true}
         />
-        <div style={{marginTop: '1em', display: 'flex', flexDirection: 'row', gap: '1em', justifyContent: 'right'}}>
+        <div style={{ marginTop: '1em', display: 'flex', flexDirection: 'row', gap: '1em', justifyContent: 'right' }}>
           <button className='btn btn-secondary'>Cancel</button>
-          <Button label={`Save`} type='submit'/>
+          <Button label={`Save`} type='submit' />
         </div>
       </form>
     </div>
