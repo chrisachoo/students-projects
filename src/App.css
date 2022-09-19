@@ -53,12 +53,30 @@ label {
   color: var(--primary-color);
 }
 
-input {
+input,
+textarea {
   width: 100%;
   padding: .5em 1em;
   border: 2px solid var(--primary-color);
   border-radius: 5px;
   outline: none;
+  min-height: 38px;
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  padding: .5em 1em;
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.1;
+  min-height: 38px;
+  border-radius: 5px;
+  background: #FFF;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
 }
 
 form {

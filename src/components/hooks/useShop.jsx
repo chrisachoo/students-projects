@@ -14,6 +14,7 @@ export const useShop = () => {
       console.log(err)
     })
     const json = await response.json()
+    console.log(json)
 
     if (!response.ok) {
       setIsLoading(false)
