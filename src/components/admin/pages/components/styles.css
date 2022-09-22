@@ -48,3 +48,9 @@
     gap: 1em;
     height: fit-content;
 }
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}

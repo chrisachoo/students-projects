@@ -7,12 +7,16 @@ import { AiFillEdit } from 'react-icons/ai'
 import { ImBin2 } from 'react-icons/im'
 import ReactPaginate from 'react-paginate'
 import Upload from './components/upload'
+import { useShop } from '../../hooks/useShop'
+import { GrStatusGoodSmall } from 'react-icons/gr'
 import './dashboard.css'
+import { useEffect } from 'react'
 
 const Dashboard = () => {
   const { state } = useLocation()
   const navigate = useNavigate()
   const { signout } = useSignout()
+  const { getAllCategory } = useShop()
   console.log('response: ', state)
   const numberFormatter = Intl.NumberFormat('en-US')
 
@@ -21,7 +25,19 @@ const Dashboard = () => {
     signout()
   }
 
-  const [activeTab, setActiveTab] = useState()
+  const [options, setOptions] = useState()
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const results = await getAllCategory()
+      if (results.length > 0) {
+        setOptions(results)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+  const [activeTab, setActiveTab] = useState('home')
   const [pages, setPageNumber] = useState(0)
   const perPage = 7
   const pageVisited = pages * perPage
@@ -44,10 +60,10 @@ const Dashboard = () => {
         <div className='menu__items'>
           <h4>management</h4>
           <div className='menu__items-list'>
-            <li onClick={() => setActiveTab('home')}><HiUsers /><p>customers</p></li>
-            <li onClick={() => setActiveTab('orders')}><HiShoppingCart /><p>orders</p></li>
-            <li onClick={() => setActiveTab('add-products')}><FaTags /><p>add products</p></li>
-            <li onClick={() => setActiveTab('invoices')}><FaFileInvoice /><p>invoices</p></li>
+            <li className={activeTab === 'home' ? 'active':'' } onClick={() => setActiveTab('home')}><HiUsers /><p>customers</p></li>
+            <li className={activeTab === 'orders' ? 'active':'' } onClick={() => setActiveTab('orders')}><HiShoppingCart /><p>orders</p></li>
+            <li className={activeTab === 'add-products' ? 'active':'' } onClick={() => setActiveTab('add-products')}><FaTags /><p>add products</p></li>
+            <li className={activeTab === 'invoices' ? 'active':'' } onClick={() => setActiveTab('invoices')}><FaFileInvoice /><p>invoices</p></li>
           </div>
           <div className='signout'>
             <h2 onClick={handleSignout}><FaSignOutAlt />Logout</h2>
@@ -94,8 +110,11 @@ const Dashboard = () => {
                           <td>{x.last_name}</td>
                           <td>{x.email}</td>
                           <td>{x.cellno}</td>
-                          <td>{x.account_status}</td>
-                          <td><li className='action'><AiFillEdit /><span><ImBin2 /></span></li></td>
+                          <td>{x.account_status? 
+                            <div className='status'><GrStatusGoodSmall color='#00FFFF'/><p>active</p></div>: 
+                            <div className='status'><GrStatusGoodSmall color='#FF4343'/><p>disabled</p></div>}
+                          </td>
+                          <td><li className='action'><AiFillEdit/><span><ImBin2 color='#FFBB00' /></span></li></td>
                         </tr>
                       )
                     })}
@@ -117,7 +136,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        {activeTab === 'add-products' && <Upload />}
+        {activeTab === 'add-products' && <Upload data={options} />}
       </div>
     </section>
   )

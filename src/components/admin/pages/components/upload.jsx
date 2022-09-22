@@ -1,26 +1,20 @@
 import { useState } from 'react'
 import { saveProductsDeatils } from '../../hook/addProducts'
+import { Loader } from '../../../'
 import './styles.css'
 
-const Upload = () => {
+const Upload = ({ data }) => {
 
   const [file, setFile] = useState()
-  const [category , setCategory ] = useState()
+  const [successful, isSuccessful] = useState(null)
+  const { upload, saveProducts, error, isLoading } = saveProductsDeatils()
   const [form, setForm] = useState({
     name: '',
-    category: '',
     description: '',
     price: '',
-    quantity: ''
+    quantity: '',
+    category: ''
   })
-
-  const showPreview = (event) => {
-    if (event.target.files.length > 0) {
-      setFile(URL.createObjectURL(event.target.files[0]))
-      console.log('file: ', file)
-    }
-  }
-
 
   const handleFormChange = (event) => {
     const updatedForm = { ...form }
@@ -30,48 +24,65 @@ const Upload = () => {
   }
 
   const uploadImage = async () => {
-    if (file) {
-      const _url = await upload(file)
-    }
+    const formData = new FormData()
+    formData.append('file', file)
+    console.log('file: ', file)
+    // await upload(formData)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let { name, category, description } = form
+    // const picture_url = await uploadImage()
+    let { name, description, price, quantity, category } = form
+    const found = await data.find(({ name }) => name === category)
+    // const category_id = found.id
+
+    await saveProducts(name, description, price, quantity, category_id, picture_url)
   }
 
   return (
     <div className='section-container'>
+      {isLoading ? <Loader /> : null}
       <div className='inner-container'>
         <div className='inner-container__one'>
           <div className='preview'>
             <label htmlFor='file-ip-1'>Upload Image</label>
             <input type='file' id='file-ip-1' accept='.jpg, .png'
-              onChange={showPreview}
+              onChange={(event) => { setFile(event.target.files[0]) }}
             />
-            <img src={file} />
+            <img src={file ? (URL.createObjectURL(file)) : ''} />
+            {successful && <div className='error'>{successful}</div>}
           </div>
+          <button className='btn' onClick={uploadImage}>upload</button>
         </div>
         <div className='inner-container__two'>
           <form onSubmit={handleSubmit}>
-            <input type='text' placeholder='Product Name' />
+            <input type='text' placeholder='Product Name' name='name'
+              value={form.name} onChange={handleFormChange} required={true}
+            />
             <div className='select'>
-              <select name='Categories' id='cate'>
+              <select name='category' id='cate' value={form.category} onChange={handleFormChange} required={true}>
                 <option value=''>--Please choose an option--</option>
-                <option value={options[0].value}>{options[0].label}</option>
-                <option value={options[1].value}>{options[1].label}</option>
-                <option value={options[2].value}>{options[2].label}</option>
-                <option value={options[3].value}>{options[3].label}</option>
-                <option value={options[4].value}>{options[4].label}</option>
-                <option value={options[5].value}>{options[5].label}</option>
-                <option value={options[6].value}>{options[6].label}</option>
+                <option value={data[0].name}>{data[0].name}</option>
+                <option value={data[1].name}>{data[1].name}</option>
+                <option value={data[2].name}>{data[2].name}</option>
+                <option value={data[3].name}>{data[3].name}</option>
+                <option value={data[4].name}>{data[4].name}</option>
+                <option value={data[5].name}>{data[5].name}</option>
+                <option value={data[6].name}>{data[6].name}</option>
               </select>
             </div>
-            <textarea name='description' placeholder='Description' rows="5"></textarea>
+            <textarea name='description' placeholder='Description' rows="5"
+              value={form.description} onChange={handleFormChange} required={true}
+            ></textarea>
             <div className='inline__input'>
-              <input type='number' placeholder='Quantity' />
-              <input type='number' placeholder='price' />
+              <input type='number' placeholder='Quantity' name='quantity'
+                value={form.quantity} onChange={handleFormChange} required={true}
+              />
+              <input type='number' placeholder='price' name='price'
+                value={form.price} onChange={handleFormChange} required={true}
+              />
             </div>
             <button className='btn btn-primary' type='submit'>Add Product</button>
           </form>

@@ -59,6 +59,11 @@
 .menu__items-list li:hover {
     transform: translateX(20px);
 }
+
+.menu__items-list li.active {
+    color: var(--secondary-color);
+}
+
 .signout {
     display: grid;
     margin-top: 4em;
@@ -133,6 +138,10 @@ thead,
 tr:nth-child(even) {
     background: var(--quinary-color);
     color: var(--tertiary-color);
+}
+
+tr {
+    text-transform: capitalize;
 }
 
 .action {

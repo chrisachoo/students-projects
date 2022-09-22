@@ -26,12 +26,12 @@ export const saveProductsDeatils = () => {
 
     if (response.ok) {
       setIsLoading(false)
-      return url
+      console.log('check response: ', url)
     }
   }
 
   const saveProducts = async (name, description, price, quantity, category_id, picture_url) => {
-    setIsLoading(true)
+    setIsLoading(false)
     setError(null)
 
     const response = await fetch(`${_url}/upload/upload-docs`, {
@@ -53,5 +53,5 @@ export const saveProductsDeatils = () => {
     }
   }
 
-  return { upload, isLoading, error }
+  return { upload, saveProducts, isLoading, error }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { IoMdCart } from 'react-icons/io'
 import { useCart } from 'react-use-cart'
+import Swal from 'sweetalert2'
 import './lists.css'
 
 const Detail = () => {
@@ -13,6 +14,15 @@ const Detail = () => {
   const numberFormatter = Intl.NumberFormat('en-US')
 
   const renderText = state.price >= 350 ? 'Free Delivery Available' : 'Eligible for Cash on Delivery'
+
+  const addToCart = () => {
+    addItem(state)
+    Swal.fire({
+      title: 'Item Added to Cart',
+      icon: 'success',
+      confirmButtonColor: '#1A3365'
+    })
+  }
 
   return (
     <section className='section__padding product-details'>
@@ -33,7 +43,7 @@ const Detail = () => {
             <h1>R {numberFormatter.format(state.price)}</h1>
 
             <div className='grid-column'>
-              <button className='btn btn-primary' onClick={() => addItem(state)}>
+              <button className='btn btn-primary' onClick={addToCart}>
                 <IoMdCart /> Add to Cart
               </button>
             </div>
