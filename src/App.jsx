@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { SignIn, SignUp, Profile, LandingPage, Products, Detail, Cart } from './components/pages'
+import { SignIn, SignUp, Profile, LandingPage, Products, Detail, Cart, Reset } from './components/pages'
 import { Footer, Navigation } from './components'
 import { Dashboard } from './components/admin/index'
 import './App.css'
@@ -32,7 +32,8 @@ function App() {
   return (
     <div className='app'>
       {
-        location.pathname !== '/signin' && location.pathname !== '/signup' && location.pathname !== '/admin/dashboard' && <Navigation />
+        location.pathname !== '/signin' && location.pathname !== '/signup' && 
+        location.pathname !== '/admin/dashboard' && location.pathname !== '/reset-password' && <Navigation />
       }
       <Routes>
         <Route path='/' element={<Home />} />
@@ -42,6 +43,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/product-details' element={<Detail />} />
         <Route path='/cart-items' element={<Cart />} />
+        <Route path='/reset-password' element={<Reset />} />
 
         <Route path='/admin/dashboard' element={<Dashboard />} />
       </Routes>

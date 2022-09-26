@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useSignin } from '../../hooks/useSignin'
-import { Input, Button, Loader, SubText } from '../../'
+import { Input, Button, Loader, Password, SubText } from '../../'
 import shopping from '../../../images/dribble.jpg'
 import './onboarding.css'
 
@@ -13,6 +13,11 @@ const SignIn = () => {
     email: '',
     password: ''
   })
+
+  const [passwordShown, setPasswordShown] = useState(false)
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
+  }
 
   const { signin, error, isLoading } = useSignin()
 
@@ -28,6 +33,10 @@ const SignIn = () => {
 
     let { email: username, password } = form
     await signin(username, password).catch(err => { console.log("Error", err) })
+  }
+
+  const forgotPassword = () => {
+    navigate('/reset-password')
   }
 
   return (
@@ -52,15 +61,20 @@ const SignIn = () => {
             required={true}
           />
 
-          <Input
+          <Password
             label={`Password`}
-            type={`password`}
+            type={passwordShown ? 'text' : 'password'}
             name={`password`}
             value={form.password}
             onChange={handleFormChange}
             placeholder={`Enter password`}
             required={true}
+            onClick={togglePassword}
           />
+
+          <div className='forgot-password'>
+            <p onClick={forgotPassword}>forgot password</p>
+          </div>
 
           <div className='padding'>
             <Button

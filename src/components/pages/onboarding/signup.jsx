@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Input, Loader, Button } from '../../index'
+import { Input, Loader, Button, Password } from '../../index'
 import shopping from '../../../images/4944667.jpg'
 import './onboarding.css'
 
@@ -17,6 +17,10 @@ const SignUp = () => {
     usertype: 'shopper',
     password: ''
   })
+  const [passwordShown, setPasswordShown] = useState(false)
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown)
+  }
 
   const { signup, isLoading, error } = useSignup()
 
@@ -98,15 +102,16 @@ const SignUp = () => {
             />
 
 
-            <Input
-              label={`Password`}
-              type={`password`}
-              name={`password`}
-              value={form.password}
-              onChange={handleFormChange}
-              placeholder={`Enter password`}
-              required={true}
-            />
+            <Password
+            label={`Password`}
+            type={passwordShown ? 'text' : 'password'}
+            name={`password`}
+            value={form.password}
+            onChange={handleFormChange}
+            placeholder={`Enter password`}
+            required={true}
+            onClick={togglePassword}
+          />
 
             <div className='padding'>
               <Button

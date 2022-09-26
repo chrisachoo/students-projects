@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 import { useNavigate } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
+import Swal from 'sweetalert2'
 
 export const useSignin = () => {
   let navigate = useNavigate()
@@ -75,5 +76,32 @@ export const useSignin = () => {
     }
   }
 
-  return { signin, isLoading, error }
+  const resetPasswords = async (email) => {
+    setIsLoading(true)
+    setError(null)
+
+    const response = await fetch(`${_url}/user/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    }).catch((err) => {
+      console.log(err)
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+      Swal.fire(
+        'Error',
+        json.error,
+        'error'
+      )
+    }
+
+    if (response.ok) {
+      setIsLoading(false)
+    }
+  }
+
+  return { signin, resetPasswords, isLoading, error }
 }
