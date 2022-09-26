@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
+import Swal from 'sweetalert2'
 
 export const useAddress = () => {
 
   const { user } = useAuthContext()
-  const [error, setError] = useState(null)
+  const token = user.token
   const [isLoading, setIsLoading] = useState(null)
   const _url = 'https://e-mall-backend.herokuapp.com'
 
-  const addAddress = async (address_type, street_address, suburb, city_or_town, province, postal_code, token) => {
+  const addAddress = async (address_type, street_address, suburb, city_or_town, province, postal_code) => {
     setIsLoading(true)
-    setError(null)
 
     const response = await fetch(`${_url}/address/add-address`, {
       method: 'POST',
@@ -22,17 +22,26 @@ export const useAddress = () => {
 
     if (!response.ok) {
       setIsLoading(false)
-      setError(json.error)
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: json.error,
+      })
     }
 
     if (response.ok) {
       setIsLoading(false)
+      Swal.fire(
+        'Good job!',
+        'Address added successfully!',
+        'success'
+      )
     }
   }
 
   const getAddress = async () => {
     setIsLoading(true)
-    setError(null)
 
     const response = await fetch(`${_url}/shop/get-shops-for-a-mall/${_id}`, {
       method: 'GET',
@@ -44,6 +53,12 @@ export const useAddress = () => {
 
     if (!response.ok) {
       setIsLoading(false)
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: json.error,
+      })
     }
 
     if (response.ok) {
@@ -52,5 +67,5 @@ export const useAddress = () => {
     }
   }
 
-  return { addAddress, isLoading, error }
+  return { addAddress, isLoading }
 }

@@ -32,7 +32,7 @@ export const useSignup = () => {
       sessionStorage.setItem('user', JSON.stringify(json))
       dispatch({type: 'SIGNIN', payload: json})
       setIsLoading(false)
-      navigate('/profile')
+      navigate('/')
       console.log('response', JSON.stringify(json))
     }
   }

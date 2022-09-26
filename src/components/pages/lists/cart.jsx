@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCart } from 'react-use-cart'
 import { ImBin } from 'react-icons/im'
+import { checkout } from '../../hooks/useCheckout'
 
 const Cart = () => {
   const {
@@ -11,6 +12,7 @@ const Cart = () => {
     removeItem
   } = useCart()
 
+  const { checkUser } = checkout()
 
   let price = 0
   for (let j = 0; j < items.length; j++) {
@@ -19,6 +21,10 @@ const Cart = () => {
 
   const numberFormatter = Intl.NumberFormat('en-US')
   const formatted = numberFormatter.format(price)
+
+  const handlePass = async () => {
+    await checkUser()
+  }
 
   if (isEmpty) return <div className='section__padding'><p>Your cart is empty</p></div>
 
@@ -52,7 +58,7 @@ const Cart = () => {
             <p>Total: <span>({totalUniqueItems} items)</span></p>
             <h2>R {formatted}</h2>
           </div>
-          <button className='btn btn-primary'>Proceed to Checkout</button>
+          <button className='btn btn-primary' onClick={handlePass}>Proceed to Checkout</button>
         </div>
       </div>
       <p className='sub-text'>

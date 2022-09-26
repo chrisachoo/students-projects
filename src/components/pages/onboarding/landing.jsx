@@ -48,11 +48,8 @@ const LandingPage = ({ data }) => {
     }
   }
 
-  // GET ALL THE PRODUCTS OF SELECTED SHOP
-  const getAllProductsofShop = async (item) => {
-    console.log('selected shop: ', item)
-    // const shop_id = item.id
-    const products = await shopProducts(item.id)
+  // GET ALL THE CATEGORY OF SELECTED SHOP
+  const getAllCategoryofShop = async (item) => {
     setLoading(false)
     if (prod.length > 0) {
       navigate('/products', { state: products })
@@ -98,7 +95,7 @@ const LandingPage = ({ data }) => {
           <ReactSearchAutocomplete
             items={shops}
             onSearch={handleOnSearch}
-            onSelect={getAllProductsofShop}
+            onSelect={getAllCategoryofShop}
             autoFocus
             placeholder={`Search for shops`}
             showIcon={false}
@@ -109,7 +106,7 @@ const LandingPage = ({ data }) => {
               padding: '.5em 1em',
               display: 'flex', alignItems: 'center',
               clearIconMargin: '.5em 1em',
-              zIndex: '1'
+              zIndex: '2'
             }}
           />
         </div>

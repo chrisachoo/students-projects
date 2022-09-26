@@ -1,10 +1,12 @@
-import { useState, useNavigate, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useUpdate } from '../../hooks/useUpdate'
 import { Button, Input, Loader } from '../../index'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const Personal = () => {
 
+  const navigate = useNavigate()
   const { updateUser, isLoading } = useUpdate()
   const [form, setForm] = useState({
     first_name: '',
@@ -36,6 +38,22 @@ const Personal = () => {
     updatedForm[event.target.name] = event.target.value
 
     setForm(updatedForm)
+  }
+
+  const cancel = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You are about to leave the page, your changes will be lost.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, leave page!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/')
+      }
+    })
   }
 
   const handleSubmit = async (event) => {
@@ -92,7 +110,7 @@ const Personal = () => {
           disabled={true}
         />
         <div style={{ marginTop: '1em', display: 'flex', flexDirection: 'row', gap: '1em', justifyContent: 'right' }}>
-          <button className='btn btn-secondary'>Cancel</button>
+          <div className='btn btn-secondary' onClick={cancel}>Cancel</div>
           <Button label={`Save`} type='submit' />
         </div>
       </form>

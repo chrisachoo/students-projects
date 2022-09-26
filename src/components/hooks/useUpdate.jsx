@@ -1,16 +1,12 @@
-import { useEffect } from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 
 export const useUpdate = () => {
-
-  const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
   const _url = 'https://e-mall-backend.herokuapp.com'
 
   const updateUser = async (first_name, last_name, email, cellno, token) => {
     setIsLoading(true)
-    setError(null)
 
     console.log(`firstName: ${first_name}, lastName: ${last_name}, email: ${email}, cellno: ${cellno}, token: ${token}`)
 
@@ -25,7 +21,6 @@ export const useUpdate = () => {
 
     if (!response.ok) {
       setIsLoading(false)
-      setError(json.error)
       Swal.fire(
         'Error',
         json.error,
@@ -51,5 +46,5 @@ export const useUpdate = () => {
     }
   }
 
-  return { updateUser, isLoading, error }
+  return { updateUser, isLoading}
 }

@@ -25,8 +25,10 @@ const Upload = ({ data }) => {
 
   const uploadImage = async () => {
     const formData = new FormData()
-    formData.append('file', file)
+    formData.append('file', file[0])
+    formData.append('dnarrvla8', '')
     console.log('file: ', file)
+    console.log({formData})
     // await upload(formData)
   }
 

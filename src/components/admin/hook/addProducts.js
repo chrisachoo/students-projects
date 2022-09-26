@@ -6,14 +6,14 @@ export const saveProductsDeatils = () => {
   const [isLoading, setIsLoading] = useState(null)
   const _url = 'https://e-mall-backend.herokuapp.com'
 
-  const upload = async (file) => {
+  const upload = async (formData) => {
     setIsLoading(true)
     setError(null)
 
     const response = await fetch(`${_url}/upload/upload-docs`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ file })
+      body: JSON.stringify({ formData })
     }).catch((err) => {
       console.log(err)
     })

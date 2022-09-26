@@ -83,5 +83,24 @@ export const useShop = () => {
     }
   }
 
+  const shopCategory = async () => {
+    const response = await fetch(`${_url}/product/get-products-for-shop/${shop_id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch((err) => {
+      console.log(err)
+    })
+    const category = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+    }
+
+    if (response.ok) {
+      setIsLoading(false)
+      return category
+    }
+  }
+
   return { getAllCategory, getProducts, getMallShops, shopProducts, isLoading }
 }
