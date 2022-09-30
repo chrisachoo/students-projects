@@ -39,7 +39,7 @@ const Navigation = () => {
       </div>
       <div className='navigation__buttons'>
         <li onClick={displayCartItems}><p><IoMdCart />Cart</p></li>
-        <li onClick={() => checkSignin()}><p><IoMdSettings />Settings</p></li>
+        <li onClick={() => checkSignin()}><p><IoMdSettings />Profile</p></li>
         {!user && (
           <li onClick={() => toSignin()}><p><FaSignInAlt />SignIn</p></li>
         )}

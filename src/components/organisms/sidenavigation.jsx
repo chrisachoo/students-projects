@@ -36,7 +36,7 @@ const SideNavigation = () => {
         <div className='sidenav' style={{ width: setToggle ? '250px' : '0' }}>
           <span className='closebtn' onClick={() => setToggle(false)}><RiCloseFill/></span>
           <li ><p><IoMdCart />Cart</p></li>
-          <li onClick={() => checkSignin()}><p><IoMdSettings />Settings</p></li>
+          <li onClick={() => checkSignin()}><p><IoMdSettings />Profile</p></li>
           {!user && (
             <li onClick={() => toSignin()}><p><FaSignInAlt />SignIn</p></li>
           )}

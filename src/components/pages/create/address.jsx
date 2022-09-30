@@ -1,16 +1,19 @@
 import React from 'react'
-// import dotenv from  'dotenv'
-// dotenv.config()
 import PlacesAutocomplete from 'react-places-autocomplete'
 import scriptLoader from 'react-async-script-loader'
 import { useState } from 'react'
+// const google = window.google
 
 const Address = ({ isScriptLoaded, isScriptLoadSucceed }) => {
   const [address, setAddress] = useState('')
+  // const searchOptions = {
+  //   location: new window.google.maps.LatLng(-28.47926, 24.67271),
+  //   radius: 2000,
+  //   ypes: ['address']
+  // }
 
   const handleChange = (value) => {
     setAddress(value)
-    // console.log({address})
   }
 
   const handleSelect = (value) => {
@@ -18,14 +21,13 @@ const Address = ({ isScriptLoaded, isScriptLoadSucceed }) => {
     console.log({value})
   }
 
-  // console.log({import.meta.env.VITE_APP_GOOGLE_MAP_API})
-
   if (isScriptLoaded && isScriptLoadSucceed) {
     return (
       <div>
-        <p>Google Maps Place Autocomplete</p>
+        <p>Full Address</p>
         <PlacesAutocomplete value={address} onChange={handleChange}
-          onSelect={handleSelect} >
+          onSelect={handleSelect}
+          highlightFirstSuggestion={true}>
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
               <input {...getInputProps({
@@ -54,4 +56,6 @@ const Address = ({ isScriptLoaded, isScriptLoadSucceed }) => {
   }
 }
 
-export default scriptLoader([`https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_APP_GOOGLE_MAP_API}&libraries=places`])(Address)
+export default scriptLoader([`https://maps.googleapis.com/maps/api/js?key=${
+  import.meta.env.VITE_APP_GOOGLE_MAP_API}&libraries=places`
+])(Address)

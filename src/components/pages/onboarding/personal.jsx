@@ -86,7 +86,7 @@ const Personal = () => {
           value={form.last_name}
           onChange={handleFormChange}
           defaultValue={form.last_name}
-          placeholder={`First Name`}
+          placeholder={`Last Name`}
         />
 
         <Input
@@ -110,7 +110,7 @@ const Personal = () => {
           disabled={true}
         />
         <div style={{ marginTop: '1em', display: 'flex', flexDirection: 'row', gap: '1em', justifyContent: 'right' }}>
-          <div className='btn btn-secondary' onClick={cancel}>Cancel</div>
+          <button className='btn btn-secondary' type='cancel' onClick={cancel}>Cancel</button>
           <Button label={`Save`} type='submit' />
         </div>
       </form>
